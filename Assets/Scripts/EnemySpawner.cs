@@ -5,9 +5,14 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject Monkey;
-    public Transform square;
+
+    public Sprite sprite;
+    //public Transform square;
+    [HideInInspector]
     public List<Transform> points;
+
     public GameObject monkeySpawnEffect;
+
     [HideInInspector]
     public bool isTaken;
 
@@ -23,18 +28,21 @@ public class EnemySpawner : MonoBehaviour
     [HideInInspector]
     public float xDivider, yDivider = 1f;
 
-    [SerializeField]
-    bool isFreezing;
+    [HideInInspector]
+    public bool isFreezing;
 
-    [SerializeField]
-    int freezeIndex;
+    [HideInInspector]
+    public int freezeIndex;
 
-    [SerializeField]
-    float howLongToFreeze;
+    [HideInInspector]
+    public float howLongToFreeze;
 
-    [Header("Vine")]
+    [HideInInspector]
     public bool useVine;
+
+    [HideInInspector]
     public Transform vinePoint;
+
 
     void Awake()
     {
@@ -50,7 +58,8 @@ public class EnemySpawner : MonoBehaviour
     {
         Instantiate(monkeySpawnEffect, transform.position, new Quaternion(-1, Quaternion.identity.y, Quaternion.identity.z, 1));
         Monkey tempMonkey = Instantiate(Monkey, transform.position, Quaternion.identity).GetComponent<Monkey>();
-        tempMonkey.square = square;
+        tempMonkey.sprite = sprite;
+        //tempMonkey.square = square;
         tempMonkey.waypoints = points;
         tempMonkey.originSpawner = this;
         tempMonkey.MovementType = movementType;

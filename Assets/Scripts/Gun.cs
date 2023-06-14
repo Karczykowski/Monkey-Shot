@@ -19,6 +19,9 @@ public class Gun : MonoBehaviour
 
     public int totalAmmo=20;
     public int ammoInMag;
+    public int magSize;
+    public float rateOfFire;
+    public float reloadTime;
     public TextMeshProUGUI reloadText;
     public TextMeshProUGUI ammoText;
 
@@ -27,15 +30,21 @@ public class Gun : MonoBehaviour
     public SpriteRenderer crosshairRend;
     public SpriteRenderer handRend;
     public Transform cameraTransform;
+
+    private List<UpgradeTemplate> equippedUpgrades; 
     //HandMovement
     [Range(0.2f, 1f)] public float movementSensitivity;
 
     private AnimationController _animController;
     private Vector2 startPos;
 
+    private void Awake()
+    {
+        equippedUpgrades = new List<UpgradeTemplate>();
+        _animController = GetComponent<AnimationController>();
+    }
     private void Start()
     {
-        _animController = GetComponent<AnimationController>();
         PopulateInfo(gunType);
         startPos = transform.position;
     }
@@ -60,7 +69,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (isReloading == false && ammoInMag!=gunType.magSize && totalAmmo!=0)
+            if (isReloading == false && ammoInMag!=magSize && totalAmmo!=0)
             {
                 canShoot = false;
                 StartCoroutine(Reload());
@@ -112,13 +121,12 @@ public class Gun : MonoBehaviour
                     Instantiate(shootEffect, ray.origin, Quaternion.identity);
                     ammoInMag--;
                     canShoot = false;
-                    countdown = gunType.rateOfFire;
+                    countdown = rateOfFire;
                     return;
                 }
                 if (hit[i].transform.gameObject.layer == enemyLayer)
                     target = hit[i];
             }
-
             if (target.collider != null)
             {
                 Monkey targetEnemy = target.transform.GetComponent<Monkey>();
@@ -127,7 +135,7 @@ public class Gun : MonoBehaviour
             Instantiate(shootEffect, ray.origin, Quaternion.identity);
             ammoInMag--;
             canShoot = false;
-            countdown = gunType.rateOfFire;
+            countdown = rateOfFire;
         }
     }
     IEnumerator Reload()
@@ -136,27 +144,53 @@ public class Gun : MonoBehaviour
         reloadText.text = "RELOADING";
         canMove = false;
         transform.position = new Vector3(transform.position.x, -17);
-        yield return new WaitForSeconds(gunType.reloadTime);
+        yield return new WaitForSeconds(reloadTime);
 
         totalAmmo += ammoInMag;
-        if (totalAmmo < gunType.magSize)
+        if (totalAmmo < magSize)
         {
             ammoInMag = totalAmmo;
             totalAmmo -= totalAmmo;
         }
         else
         {
-            ammoInMag = gunType.magSize;
-            totalAmmo -= gunType.magSize;
+            ammoInMag = magSize;
+            totalAmmo -= magSize;
         }
         reloadText.text = "";
         isReloading = false;
         canMove = true;
     }
 
+    public void EquipUpgrade(UpgradeTemplate newUpgrade)
+    {
+        if (newUpgrade.compatibleGun != gunType)
+            return;
+
+        equippedUpgrades.Add(newUpgrade);
+        CalculateStats();
+    }
+
+    void CalculateStats()
+    {
+        magSize = gunType.magSize;
+        rateOfFire = gunType.rateOfFire;
+        reloadTime = gunType.reloadTime;
+        
+        foreach (UpgradeTemplate upgrade in equippedUpgrades)
+        {
+            magSize += upgrade.magSize;
+            rateOfFire += upgrade.rateOfFire;
+            reloadTime += upgrade.reloadTime;
+        }
+    }
+
     public void PopulateInfo(GunTemplate newGun)
     {
         gunType = newGun;
+        magSize = gunType.magSize;
+        rateOfFire = gunType.rateOfFire;
+        reloadTime = gunType.reloadTime;
         ammoInMag = gunType.magSize;
         countdown = gunType.rateOfFire;
         crosshairRend.sprite = gunType.crosshair;

@@ -6,13 +6,6 @@ public class CameraController : MonoBehaviour
 {
     public float panSpeed = 35f;
     public float maxCameraMove;
-
-    public Transform square;
-
-    void Start()
-    {
-        maxCameraMove = 6;
-    }
     void Update()
     {
         if (Input.GetKey("d"))
