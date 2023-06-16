@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI moneyText;
     private ComboSystem _comboSystem;
     public List<Gun> guns;
+    public GameObject shop;
+    private bool shopToggle = false;
 
     private void Awake()
     {
@@ -37,6 +39,22 @@ public class GameManager : MonoBehaviour
         {
             string multiplierPart = "<color=#ECAD47><size=40>" + " (x2)" + "</size></color>";
             moneyText.SetText("POINTS: " + money.ToString() + multiplierPart);
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(shopToggle)
+            {
+                shop.SetActive(false);
+                shopToggle = false;
+                Gun.instance.isShopOpen = false;
+            }
+            else
+            {
+                shop.SetActive(true);
+                shopToggle = true;
+                Gun.instance.isShopOpen = true;
+            }
         }
     }
 

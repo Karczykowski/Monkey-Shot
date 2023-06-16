@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class ShopButton : MonoBehaviour
 {
@@ -22,5 +23,6 @@ public class ShopButton : MonoBehaviour
             return;
         GameManager.instance.EquipUpgrade(upgrade);
         GameManager.instance.money -= upgrade.cost;
+        GetComponent<Button>().interactable = false;
     }
 }

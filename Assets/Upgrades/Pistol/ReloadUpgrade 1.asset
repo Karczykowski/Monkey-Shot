@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640c0ea775ae2d94fbd2bba28f3839d1, type: 3}
-  m_Name: MagUpgrade1
+  m_Name: ReloadUpgrade 1
   m_EditorClassIdentifier: 
-  name: Mag 1
-  cost: 20
-  magSize: 3
+  name: Reload
+  cost: 100
+  magSize: 0
   rateOfFire: 0
-  reloadTime: 0
+  reloadTime: -1
   compatibleGun: {fileID: 11400000, guid: 990914729865f6f4e9865389f5f0f189, type: 2}

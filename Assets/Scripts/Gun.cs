@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     public static Vector2 mouseLocation;
     public float countdown = 0;         //shooting
     bool canShoot = true;
+    public bool isShopOpen = false;
     bool isReloading = false;
     bool canMove = true;
     public int obstacleLayer;
@@ -38,8 +39,11 @@ public class Gun : MonoBehaviour
     private AnimationController _animController;
     private Vector2 startPos;
 
+    public static Gun instance;
+
     private void Awake()
     {
+        instance = this;
         equippedUpgrades = new List<UpgradeTemplate>();
         _animController = GetComponent<AnimationController>();
     }
@@ -54,6 +58,15 @@ public class Gun : MonoBehaviour
 
         Vector2 newPos = (Vector2)cameraTransform.position + startPos + (mousePos * movementSensitivity);
 
+        if(isShopOpen)
+        {
+            crosshairRend.sprite = Shop.instance.shopMouseIcon;
+        }
+        else
+        {
+            crosshairRend.sprite = gunType.crosshair;
+        }
+
         if (canMove)
             transform.position = newPos;
         else
@@ -62,12 +75,12 @@ public class Gun : MonoBehaviour
             transform.position = new Vector2(newPos.x, -17);
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !isShopOpen)
         {
             Shoot();
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && !isShopOpen)
         {
             if (isReloading == false && ammoInMag!=magSize && totalAmmo!=0)
             {
@@ -169,20 +182,27 @@ public class Gun : MonoBehaviour
 
         equippedUpgrades.Add(newUpgrade);
         CalculateStats();
+        Debug.Log("test");
     }
 
     void CalculateStats()
     {
+        
         magSize = gunType.magSize;
         rateOfFire = gunType.rateOfFire;
         reloadTime = gunType.reloadTime;
-        
+         
+
         foreach (UpgradeTemplate upgrade in equippedUpgrades)
         {
+            
             magSize += upgrade.magSize;
+            
             rateOfFire += upgrade.rateOfFire;
             reloadTime += upgrade.reloadTime;
+            
         }
+        
     }
 
     public void PopulateInfo(GunTemplate newGun)

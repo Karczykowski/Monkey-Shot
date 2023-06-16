@@ -283,9 +283,9 @@ MonoBehaviour:
   m_ChildAlignment: 0
   fitType: 4
   rows: 0
-  columns: 2
-  cellSize: {x: 169.5695, y: Infinity}
-  spacing: {x: 15, y: 15}
+  columns: 3
+  cellSize: {x: 108.04633, y: Infinity}
+  spacing: {x: 15, y: 50}
   fitX: 1
   fitY: 1
   squareCell: 0
@@ -306,7 +306,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableUpgrades:
   - {fileID: 11400000, guid: f2b6ca7a6d361cc4380065324a2b1fd3, type: 2}
+  - {fileID: 11400000, guid: 31a06b9934c4462449601a0a35c871ac, type: 2}
+  - {fileID: 11400000, guid: a58d1eea8f5b5d84ab2668ab3b4e3c1c, type: 2}
+  - {fileID: 11400000, guid: 80aba51601aa8894388c0ac23980e01d, type: 2}
+  - {fileID: 11400000, guid: e6ea09393cf56754ab208001b3bb3ce7, type: 2}
+  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
+  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
+  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
+  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
+  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
+  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
   buttonPrefab: {fileID: 3169079431701862674, guid: 98a9ae35098dcb7458174be283a44642, type: 3}
+  shopMouseIcon: {fileID: 21300000, guid: b21be87a528abb143b982692ae5062ea, type: 3}
 --- !u!1 &71053489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,11 +1115,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba979c5148b26843aede00be93c814a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
+  money: 1000
   moneyText: {fileID: 924151669}
   guns:
   - {fileID: 483295486}
-  - {fileID: 253671122}
+  shop: {fileID: 1678174064}
 --- !u!114 &178526842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1578,6 +1589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: {fileID: 11400000, guid: 990914729865f6f4e9865389f5f0f189, type: 2}
   countdown: 0
+  isShopOpen: 0
   obstacleLayer: 6
   enemyLayer: 7
   totalAmmo: 100
@@ -1754,7 +1766,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 999
+  m_SortingOrder: 14
   m_TargetDisplay: 0
 --- !u!224 &270066736
 RectTransform:
@@ -2421,6 +2433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunType: {fileID: 11400000, guid: 990914729865f6f4e9865389f5f0f189, type: 2}
   countdown: 0
+  isShopOpen: 0
   obstacleLayer: 6
   enemyLayer: 7
   totalAmmo: 100
@@ -4158,8 +4171,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 12
-  m_Sprite: {fileID: 21300000, guid: 95d06562fd3cefb45802c0c1aa1f73a5, type: 3}
+  m_SortingOrder: 15
+  m_Sprite: {fileID: 21300000, guid: 8fac55fff4ce5fa40a7b2efefc0e617a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6616,7 +6629,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1678174065
 RectTransform:
   m_ObjectHideFlags: 0
