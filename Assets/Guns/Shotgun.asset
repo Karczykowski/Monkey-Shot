@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f61b06376040c7e4d98fc67f42b312da, type: 3}
-  m_Name: Pistol
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  name: Pistol
-  rateOfFire: 0.7
-  magSize: 7
+  name: Shotgun
+  rateOfFire: 1
+  magSize: 2
   reloadTime: 2
   shootEffect: {fileID: 278650250576229169, guid: fe81a32807b742a4c916d0d6fc0fb692, type: 3}
-  crosshair: {fileID: 21300000, guid: e7a4c098f6d79e84286f8f4669910e7f, type: 3}
-  handSprite: {fileID: 21300000, guid: 38578c2c2ada352438138f1b3d81179e, type: 3}
-  animController: {fileID: 9100000, guid: cd4003afcfb6ade44b93f0f8d59a5b4c, type: 2}
-  shotSound: Pistol Shot
+  crosshair: {fileID: 21300000, guid: 797083b473536334ebc8e422de68bead, type: 3}
+  handSprite: {fileID: 21300000, guid: a380baa268651ac4f81072dee57c95fa, type: 3}
+  animController: {fileID: 9100000, guid: a0a57c3a621dba2409d9e4c1a686225a, type: 2}
+  shotSound: Shotgun shot
   reloadSound: 
