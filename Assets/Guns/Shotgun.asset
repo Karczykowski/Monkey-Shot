@@ -17,6 +17,7 @@ MonoBehaviour:
   magSize: 2
   reloadTime: 2
   shootEffect: {fileID: 278650250576229169, guid: fe81a32807b742a4c916d0d6fc0fb692, type: 3}
+  explosionRadius: 1
   crosshair: {fileID: 21300000, guid: 797083b473536334ebc8e422de68bead, type: 3}
   handSprite: {fileID: 21300000, guid: a380baa268651ac4f81072dee57c95fa, type: 3}
   animController: {fileID: 9100000, guid: a0a57c3a621dba2409d9e4c1a686225a, type: 2}

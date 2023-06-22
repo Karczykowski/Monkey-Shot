@@ -25,6 +25,7 @@ public class Gun : MonoBehaviour
     public float reloadTime;
     public TextMeshProUGUI reloadText;
     public TextMeshProUGUI ammoText;
+    public float explosionRadius;
 
     public GameObject shootEffect;
     public EnemySpawner enemySpawner;
@@ -77,7 +78,10 @@ public class Gun : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0) && !isShopOpen)
         {
-            Shoot();
+            if (gunType.name == "Shotgun")
+                ShotgunShoot();
+            else
+                Shoot();
         }
 
         if (Input.GetKeyDown(KeyCode.R) && !isShopOpen)
@@ -151,6 +155,33 @@ public class Gun : MonoBehaviour
             countdown = rateOfFire;
         }
     }
+
+    void ShotgunShoot()
+    {
+        if(canShoot)
+        {
+            _animController.ChangeAnimationState("shot");
+            AudioManager.instance.Play(gunType.shotSound);
+            Shake.start = true;
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(ray.origin, explosionRadius);
+            foreach (Collider2D collider in colliders)
+            {
+                if (collider.tag == "Enemy")
+                {
+                    Monkey targetEnemy = collider.transform.GetComponent<Monkey>();
+                    targetEnemy.KillMonkey();
+                }
+            }
+
+            Instantiate(shootEffect, ray.origin, Quaternion.identity);
+            ammoInMag--;
+            canShoot = false;
+            countdown = rateOfFire;
+        }
+    }
     IEnumerator Reload()
     {
         isReloading = true;
@@ -182,7 +213,6 @@ public class Gun : MonoBehaviour
 
         equippedUpgrades.Add(newUpgrade);
         CalculateStats();
-        Debug.Log("test");
     }
 
     void CalculateStats()
@@ -213,6 +243,7 @@ public class Gun : MonoBehaviour
         reloadTime = gunType.reloadTime;
         ammoInMag = gunType.magSize;
         countdown = gunType.rateOfFire;
+        explosionRadius = gunType.explosionRadius;
         crosshairRend.sprite = gunType.crosshair;
         handRend.sprite = gunType.handSprite;
         _animController.anim.runtimeAnimatorController = gunType.animController;

@@ -1605,6 +1605,7 @@ MonoBehaviour:
   reloadTime: 0
   reloadText: {fileID: 1902111978}
   ammoText: {fileID: 280640659}
+  explosionRadius: 0
   shootEffect: {fileID: 278650250576229169, guid: fe81a32807b742a4c916d0d6fc0fb692, type: 3}
   enemySpawner: {fileID: 935369485}
   crosshairRend: {fileID: 976477265}
@@ -2449,6 +2450,7 @@ MonoBehaviour:
   reloadTime: 0
   reloadText: {fileID: 1902111978}
   ammoText: {fileID: 280640659}
+  explosionRadius: 0
   shootEffect: {fileID: 278650250576229169, guid: fe81a32807b742a4c916d0d6fc0fb692, type: 3}
   enemySpawner: {fileID: 935369485}
   crosshairRend: {fileID: 976477265}
