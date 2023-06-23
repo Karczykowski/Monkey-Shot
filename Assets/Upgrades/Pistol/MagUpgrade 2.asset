@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Mag 2
   cost: 50
-  magSize: 4
+  magSize: 2
   rateOfFire: 0
   reloadTime: 0
   compatibleGun: {fileID: 11400000, guid: 990914729865f6f4e9865389f5f0f189, type: 2}

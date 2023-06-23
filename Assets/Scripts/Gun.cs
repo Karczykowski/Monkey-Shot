@@ -55,6 +55,16 @@ public class Gun : MonoBehaviour
     }
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !isShopOpen && !isReloading)
+        {
+            GameManager.instance.newGunIndex = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !isShopOpen && !isReloading)
+        {
+            GameManager.instance.newGunIndex = 1;
+        }
+
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 newPos = (Vector2)cameraTransform.position + startPos + (mousePos * movementSensitivity);
@@ -208,6 +218,7 @@ public class Gun : MonoBehaviour
 
     public void EquipUpgrade(UpgradeTemplate newUpgrade)
     {
+        Debug.Log(gunType);
         if (newUpgrade.compatibleGun != gunType)
             return;
 
