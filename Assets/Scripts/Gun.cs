@@ -65,6 +65,11 @@ public class Gun : MonoBehaviour
             GameManager.instance.newGunIndex = 1;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !isShopOpen && !isReloading)
+        {
+            GameManager.instance.newGunIndex = 2;
+        }
+
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 newPos = (Vector2)cameraTransform.position + startPos + (mousePos * movementSensitivity);
