@@ -25,6 +25,7 @@ public class Gun : MonoBehaviour
     public float reloadTime;
     public TextMeshProUGUI reloadText;
     public TextMeshProUGUI ammoText;
+    public TextMeshProUGUI zoomText;
     public float explosionRadius;
 
     public GameObject shootEffect;
@@ -32,6 +33,11 @@ public class Gun : MonoBehaviour
     public SpriteRenderer crosshairRend;
     public SpriteRenderer handRend;
     public Transform cameraTransform;
+
+    public Sprite SniperZoom;
+    public bool isZoomed = false;
+    public float zoomTimer;
+    private float zoomCountdown;
 
     private List<UpgradeTemplate> equippedUpgrades; 
     //HandMovement
@@ -52,22 +58,24 @@ public class Gun : MonoBehaviour
     {
         PopulateInfo(gunType);
         startPos = transform.position;
+        zoomCountdown = zoomTimer;
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && !isShopOpen && !isReloading)
         {
-            GameManager.instance.newGunIndex = 0;
+            ChangeWeapon(0);
+            
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2) && !isShopOpen && !isReloading)
         {
-            GameManager.instance.newGunIndex = 1;
+            ChangeWeapon(1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && !isShopOpen && !isReloading)
         {
-            GameManager.instance.newGunIndex = 2;
+            ChangeWeapon(2);
         }
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -78,7 +86,7 @@ public class Gun : MonoBehaviour
         {
             crosshairRend.sprite = Shop.instance.shopMouseIcon;
         }
-        else
+        else if (!isZoomed)
         {
             crosshairRend.sprite = gunType.crosshair;
         }
@@ -132,6 +140,41 @@ public class Gun : MonoBehaviour
             {
                 reloadText.text = "NEED TO RELOAD!";
             }
+        }
+
+        if (Input.GetMouseButtonDown(1) && GameManager.instance.currentGunIndex == 2)
+        {
+            if (!isZoomed)
+            {
+                crosshairRend.sprite = SniperZoom;
+                isZoomed = true;
+                GameManager.instance.isZoomed = true;
+            }
+            else
+            {
+                isZoomed = false;
+                GameManager.instance.isZoomed = false;
+            }
+        }
+
+        if (GameManager.instance.currentGunIndex == 2)
+            zoomText.text = "Zoom:" + zoomCountdown.ToString("F1");
+        else
+            zoomText.text = "";
+
+        if (isZoomed)
+        {
+            zoomCountdown -= Time.deltaTime;
+            if(zoomCountdown <= 0)
+            {
+                isZoomed = false;
+                GameManager.instance.isZoomed = false;
+            }
+        }
+        else
+        {
+            if (zoomCountdown < zoomTimer)
+                zoomCountdown += Time.deltaTime/2;
         }
     }
     void Shoot()
@@ -263,5 +306,12 @@ public class Gun : MonoBehaviour
         crosshairRend.sprite = gunType.crosshair;
         handRend.sprite = gunType.handSprite;
         _animController.anim.runtimeAnimatorController = gunType.animController;
+    }
+
+    public void ChangeWeapon(int number)
+    {
+        isZoomed = false;
+        GameManager.instance.isZoomed = false;
+        GameManager.instance.newGunIndex = number;
     }
 }

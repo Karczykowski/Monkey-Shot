@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Monkey : MonoBehaviour
 {
-    public float speed = 5f;
+    public float speed = 6f;
     public Transform square;
     //Vector2 direction;
     public bool canEnemyMove;
@@ -27,6 +27,7 @@ public class Monkey : MonoBehaviour
     public Transform vinePoint;
     public Sprite sprite;
     SpriteRenderer rend;
+    public bool isSlowed = false;
 
     private ComboSystem _comboSystem;
     private GameManager _gameManager;
@@ -51,23 +52,18 @@ public class Monkey : MonoBehaviour
             lineRenderer.SetPosition(0, transform.position);
             lineRenderer.SetPosition(1, vinePoint.position);
         }
-
-        /*if (!canEnemyMove)
-            return;
-
-        if (Mathf.Abs(transform.position.x) >= (square.localScale.x / 2) - 1)
+        
+        if(GameManager.instance.isZoomed && !isSlowed)
         {
-            direction = new Vector2(-direction.x, direction.y);
+            speed /= 2;
+            isSlowed = true;
         }
 
-        if (Mathf.Abs(transform.position.y) >= (square.localScale.y / 2) - 1)
+        if(!GameManager.instance.isZoomed && isSlowed)
         {
-            direction = new Vector2(direction.x, -direction.y);
+            speed *= 2;
+            isSlowed = false;
         }
-
-        transform.Translate(direction.normalized * speed * Time.deltaTime);
-        */
-
     }
 
     public void KillMonkey()

@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public List<GameObject> gunsObjects;
     public GameObject shop;
     private bool shopToggle = false;
+    public bool isZoomed = false;
 
     private void Awake()
     {
