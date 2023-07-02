@@ -280,16 +280,18 @@ public class Gun : MonoBehaviour
         magSize = gunType.magSize;
         rateOfFire = gunType.rateOfFire;
         reloadTime = gunType.reloadTime;
+        zoomTimer = gunType.zoomTimer;
+        explosionRadius = gunType.explosionRadius;
          
 
         foreach (UpgradeTemplate upgrade in equippedUpgrades)
         {
             
             magSize += upgrade.magSize;
-            
             rateOfFire += upgrade.rateOfFire;
             reloadTime += upgrade.reloadTime;
-            
+            zoomTimer += upgrade.zoomTimer;
+            explosionRadius += upgrade.explosionRadius;
         }
         
     }
@@ -303,6 +305,7 @@ public class Gun : MonoBehaviour
         ammoInMag = gunType.magSize;
         countdown = gunType.rateOfFire;
         explosionRadius = gunType.explosionRadius;
+        zoomTimer = gunType.zoomTimer;
         crosshairRend.sprite = gunType.crosshair;
         handRend.sprite = gunType.handSprite;
         _animController.anim.runtimeAnimatorController = gunType.animController;

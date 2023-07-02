@@ -307,15 +307,15 @@ MonoBehaviour:
   availableUpgrades:
   - {fileID: 11400000, guid: f2b6ca7a6d361cc4380065324a2b1fd3, type: 2}
   - {fileID: 11400000, guid: 31a06b9934c4462449601a0a35c871ac, type: 2}
+  - {fileID: 11400000, guid: 92d83c9767a8cb7419b1cf54dd2a2a26, type: 2}
+  - {fileID: 11400000, guid: 8a35d4a9e52d7d642891ffe238ee55a6, type: 2}
+  - {fileID: 11400000, guid: 7e1b1c36ed33a4e4098758fce3b11eeb, type: 2}
   - {fileID: 11400000, guid: a58d1eea8f5b5d84ab2668ab3b4e3c1c, type: 2}
   - {fileID: 11400000, guid: 80aba51601aa8894388c0ac23980e01d, type: 2}
   - {fileID: 11400000, guid: e6ea09393cf56754ab208001b3bb3ce7, type: 2}
-  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
-  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
-  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
-  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
-  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
-  - {fileID: 11400000, guid: 1ff523417f42ceb409abb86bab343d54, type: 2}
+  - {fileID: 11400000, guid: c8d12910eab5cd04f864287d549a07c5, type: 2}
+  - {fileID: 11400000, guid: 992ebfe315440ab459136fd79e547059, type: 2}
+  - {fileID: 11400000, guid: 0358f9c0059b6d948b607cb0797e66bb, type: 2}
   buttonPrefab: {fileID: 3169079431701862674, guid: 98a9ae35098dcb7458174be283a44642, type: 3}
   shopMouseIcon: {fileID: 21300000, guid: b21be87a528abb143b982692ae5062ea, type: 3}
 --- !u!1 &71053489
@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba979c5148b26843aede00be93c814a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 1000
+  money: 99999
   moneyText: {fileID: 924151669}
   currentGunIndex: 0
   newGunIndex: 0
@@ -2537,13 +2537,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3070120a48051ca42a4d151413ea4fb8, type: 2}
   - {fileID: 11400000, guid: 12cbfd94191403a42bde9e7c2e39ae6b, type: 2}
   - {fileID: 11400000, guid: dadc5db8e3bd85740ac1e09d66123826, type: 2}
-  - {fileID: 11400000, guid: d8f1fcc8e60495c4aa50a0ec465c8d69, type: 2}
-  - {fileID: 11400000, guid: d8f1fcc8e60495c4aa50a0ec465c8d69, type: 2}
-  - {fileID: 11400000, guid: d8f1fcc8e60495c4aa50a0ec465c8d69, type: 2}
-  - {fileID: 11400000, guid: d8f1fcc8e60495c4aa50a0ec465c8d69, type: 2}
-  - {fileID: 11400000, guid: d8f1fcc8e60495c4aa50a0ec465c8d69, type: 2}
-  - {fileID: 11400000, guid: d8f1fcc8e60495c4aa50a0ec465c8d69, type: 2}
-  - {fileID: 11400000, guid: d8f1fcc8e60495c4aa50a0ec465c8d69, type: 2}
+  - {fileID: 11400000, guid: 175e2852de583624a89967281a5e1669, type: 2}
+  - {fileID: 11400000, guid: 0611bc2eb9505a74988e576893291f6d, type: 2}
+  - {fileID: 11400000, guid: e38f138ab3d86904b9f8dc2922826aba, type: 2}
+  - {fileID: 11400000, guid: fad0d2e5eb36be44cb282e613d106108, type: 2}
+  - {fileID: 11400000, guid: 97f3b570530132f4cae7395c19a8c7a3, type: 2}
+  - {fileID: 11400000, guid: 453847cffbc20d04b95c20a02e25afeb, type: 2}
+  - {fileID: 11400000, guid: 5f1649b552f2040469a6af52ccb567c3, type: 2}
   buttonPrefab: {fileID: 3169079431701862674, guid: 98a9ae35098dcb7458174be283a44642, type: 3}
   shopMouseIcon: {fileID: 21300000, guid: b21be87a528abb143b982692ae5062ea, type: 3}
 --- !u!1 &472095800
@@ -4869,12 +4869,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ecec26b0730b25e42a49048c72a7c74d, type: 2}
   - {fileID: 11400000, guid: 7e3523fd6ac50db42bb6880929340ebc, type: 2}
   - {fileID: 11400000, guid: 4176df185518e90409f76704478c1a64, type: 2}
-  - {fileID: 11400000, guid: 7996b408935f0b440a078b659036a8b8, type: 2}
-  - {fileID: 11400000, guid: 7996b408935f0b440a078b659036a8b8, type: 2}
-  - {fileID: 11400000, guid: 7996b408935f0b440a078b659036a8b8, type: 2}
-  - {fileID: 11400000, guid: 7996b408935f0b440a078b659036a8b8, type: 2}
-  - {fileID: 11400000, guid: 7996b408935f0b440a078b659036a8b8, type: 2}
-  - {fileID: 11400000, guid: 7996b408935f0b440a078b659036a8b8, type: 2}
+  - {fileID: 11400000, guid: 34fa3ab5e2801654f9e2941e647ef906, type: 2}
+  - {fileID: 11400000, guid: 701904e72bc54bb4ba335107afa567ac, type: 2}
+  - {fileID: 11400000, guid: a40accd084b772e48a731d60b3ce1364, type: 2}
+  - {fileID: 11400000, guid: faeefae37eaa04444903b734d50bc3fa, type: 2}
+  - {fileID: 11400000, guid: 1298e103d24e16742ac9957d52c95316, type: 2}
+  - {fileID: 11400000, guid: 315e8f0f5cfed0341ac12f2872032073, type: 2}
   buttonPrefab: {fileID: 3169079431701862674, guid: 98a9ae35098dcb7458174be283a44642, type: 3}
   shopMouseIcon: {fileID: 21300000, guid: b21be87a528abb143b982692ae5062ea, type: 3}
 --- !u!1 &1106843803
@@ -5023,7 +5023,7 @@ MonoBehaviour:
   movementType: 2
   rotationCenter: {fileID: 1132670012}
   rotationRadius: 3
-  angularSpeed: 3
+  angularSpeed: 0.5
   xDivider: 1
   yDivider: 2
   isFreezing: 0
@@ -5371,7 +5371,7 @@ MonoBehaviour:
   movementType: 2
   rotationCenter: {fileID: 1260750906}
   rotationRadius: 8
-  angularSpeed: 2
+  angularSpeed: 0.5
   xDivider: 1
   yDivider: 4
   isFreezing: 0
@@ -6061,7 +6061,7 @@ MonoBehaviour:
   movementType: 2
   rotationCenter: {fileID: 1369279496}
   rotationRadius: 2
-  angularSpeed: 2
+  angularSpeed: 0.5
   xDivider: 1
   yDivider: 1
   isFreezing: 0

@@ -16,5 +16,7 @@ MonoBehaviour:
   cost: 140
   magSize: 0
   rateOfFire: 0
-  reloadTime: -0.6
+  reloadTime: -0.5
+  explosionRadius: 0
+  zoomTimer: 0
   compatibleGun: {fileID: 11400000, guid: 4ff01604440ccf3429213cc436e33f8f, type: 2}

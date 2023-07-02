@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640c0ea775ae2d94fbd2bba28f3839d1, type: 3}
-  m_Name: MagUpgrade 2
+  m_Name: MagUpgrade 5
   m_EditorClassIdentifier: 
-  name: Mag 2
-  cost: 50
-  magSize: 3
+  name: Mag 5
+  cost: 135
+  magSize: 5
   rateOfFire: 0
   reloadTime: 0
   explosionRadius: 0

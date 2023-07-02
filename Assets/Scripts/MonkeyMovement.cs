@@ -116,7 +116,7 @@ public class MonkeyMovement : MonoBehaviour
         posX = rotationCenter.position.x + Mathf.Cos(angle) * rotationRadius / xDivider;
         posY = rotationCenter.position.y + Mathf.Sin(angle) * rotationRadius / yDivider;
         transform.position = new Vector2(posX, posY);
-        angle = angle + Time.deltaTime * monkey.speed;
+        angle = angle + Time.deltaTime * angularSpeed * monkey.speed;
 
         if (angle >= 360f)
             angle = 0f;

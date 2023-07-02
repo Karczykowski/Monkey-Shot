@@ -10,5 +10,7 @@ public class UpgradeTemplate : ScriptableObject
     public int magSize;
     public float rateOfFire;
     public float reloadTime;
+    public float explosionRadius;
+    public float zoomTimer;
     public GunTemplate compatibleGun;
 }

@@ -9,6 +9,7 @@ public class GunTemplate : ScriptableObject
     public float reloadTime;
     public GameObject shootEffect;
     public float explosionRadius;
+    public float zoomTimer;
     public Sprite crosshair;
     public Sprite handSprite;
     public RuntimeAnimatorController animController;

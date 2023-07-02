@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 640c0ea775ae2d94fbd2bba28f3839d1, type: 3}
-  m_Name: MagUpgrade 2
+  m_Name: RateOfFireUpgrade 2
   m_EditorClassIdentifier: 
-  name: Mag 2
-  cost: 50
-  magSize: 3
-  rateOfFire: 0
+  name: RoF
+  cost: 80
+  magSize: 0
+  rateOfFire: -0.3
   reloadTime: 0
   explosionRadius: 0
   zoomTimer: 0
-  compatibleGun: {fileID: 11400000, guid: 990914729865f6f4e9865389f5f0f189, type: 2}
+  compatibleGun: {fileID: 11400000, guid: 62f71b044bb6bd54fbcb8c90578803b3, type: 2}
