@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     private bool shopToggle = false;
     public bool isZoomed = false;
 
+    public bool isShotgunBought = false;
+    public bool isSniperBought = false;
+
     private void Awake()
     {
         instance = this;
@@ -32,11 +35,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _comboSystem = GetComponent<ComboSystem>();
-
-        for (int i = 0; i < gunsObjects.Count; i++)
-        {
-            gunsObjects[i].SetActive(false);
-        }
 
         SetGunActive(currentGunIndex);
 

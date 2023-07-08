@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class Shop : MonoBehaviour
     public ShopButton buttonPrefab;
     public Sprite shopMouseIcon;
     public static Shop instance;
+    public Button ShotgunButton;
+    public Button SniperButton;
 
     private void Awake()
     {
@@ -22,5 +25,17 @@ public class Shop : MonoBehaviour
             ShopButton tmpButton = Instantiate(buttonPrefab, transform.position, Quaternion.identity, transform);
             tmpButton.Setup(upgrade);
         }
+    }
+
+    public void BuyShotgun()
+    {
+        GameManager.instance.isShotgunBought = true;
+        ShotgunButton.interactable = false;
+    }
+
+    public void BuySniper()
+    {
+        GameManager.instance.isSniperBought = true;
+        SniperButton.interactable = false;
     }
 }

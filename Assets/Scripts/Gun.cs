@@ -39,6 +39,8 @@ public class Gun : MonoBehaviour
     public float zoomTimer;
     private float zoomCountdown;
 
+    
+
     private List<UpgradeTemplate> equippedUpgrades; 
     //HandMovement
     [Range(0.2f, 1f)] public float movementSensitivity;
@@ -53,27 +55,32 @@ public class Gun : MonoBehaviour
         instance = this;
         equippedUpgrades = new List<UpgradeTemplate>();
         _animController = GetComponent<AnimationController>();
+        PopulateInfo(gunType);
     }
     private void Start()
     {
-        PopulateInfo(gunType);
         startPos = transform.position;
         zoomCountdown = zoomTimer;
+    }
+
+    private void OnEnable()
+    {
+        CheckForAmmo();
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && !isShopOpen && !isReloading)
         {
-            ChangeWeapon(0);
             
+            ChangeWeapon(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !isShopOpen && !isReloading)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !isShopOpen && !isReloading && GameManager.instance.isShotgunBought)
         {
             ChangeWeapon(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && !isShopOpen && !isReloading)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !isShopOpen && !isReloading && GameManager.instance.isSniperBought)
         {
             ChangeWeapon(2);
         }
@@ -104,7 +111,9 @@ public class Gun : MonoBehaviour
             if (gunType.name == "Shotgun")
                 ShotgunShoot();
             else
+            {
                 Shoot();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.R) && !isShopOpen)
@@ -128,17 +137,6 @@ public class Gun : MonoBehaviour
             {
                 countdown -= Time.deltaTime;
                 //reloadText.text = "Next bullet: " + countdown.ToString("F1");
-            }
-        }
-        else
-        {
-            if(totalAmmo==0)
-            {
-                reloadText.text = "OUT OF AMMO!";
-            }
-            else if (isReloading == false)
-            {
-                reloadText.text = "NEED TO RELOAD!";
             }
         }
 
@@ -195,6 +193,7 @@ public class Gun : MonoBehaviour
                 {
                     Instantiate(shootEffect, ray.origin, Quaternion.identity);
                     ammoInMag--;
+                    CheckForAmmo();
                     canShoot = false;
                     countdown = rateOfFire;
                     return;
@@ -209,6 +208,7 @@ public class Gun : MonoBehaviour
             }
             Instantiate(shootEffect, ray.origin, Quaternion.identity);
             ammoInMag--;
+            CheckForAmmo();
             canShoot = false;
             countdown = rateOfFire;
         }
@@ -236,6 +236,7 @@ public class Gun : MonoBehaviour
 
             Instantiate(shootEffect, ray.origin, Quaternion.identity);
             ammoInMag--;
+            CheckForAmmo();
             canShoot = false;
             countdown = rateOfFire;
         }
@@ -262,6 +263,7 @@ public class Gun : MonoBehaviour
         reloadText.text = "";
         isReloading = false;
         canMove = true;
+        countdown = 0;
     }
 
     public void EquipUpgrade(UpgradeTemplate newUpgrade)
@@ -311,6 +313,21 @@ public class Gun : MonoBehaviour
         _animController.anim.runtimeAnimatorController = gunType.animController;
     }
 
+    public void CheckForAmmo()
+    {
+        if (totalAmmo == 0)
+        {
+            reloadText.text = "OUT OF AMMO!";
+        }
+        else if (ammoInMag == 0)
+        {
+            reloadText.text = "NEED TO RELOAD!";
+        }
+        else
+        {
+            reloadText.text = "";
+        }
+    }
     public void ChangeWeapon(int number)
     {
         isZoomed = false;
