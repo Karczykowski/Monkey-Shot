@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
     public int obstacleLayer;
     public int enemyLayer;
 
-    public int totalAmmo=20;
+    public int totalAmmo = 20;
     public int ammoInMag;
     public int magSize;
     public float rateOfFire;
@@ -39,9 +39,9 @@ public class Gun : MonoBehaviour
     public float zoomTimer;
     private float zoomCountdown;
 
-    
 
-    private List<UpgradeTemplate> equippedUpgrades; 
+
+    private List<UpgradeTemplate> equippedUpgrades;
     //HandMovement
     [Range(0.2f, 1f)] public float movementSensitivity;
 
@@ -69,18 +69,17 @@ public class Gun : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !isShopOpen && !isReloading)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !isReloading)
         {
-            
             ChangeWeapon(0);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2) && !isShopOpen && !isReloading && GameManager.instance.isShotgunBought)
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !isReloading && GameManager.instance.isShotgunBought)
         {
             ChangeWeapon(1);
         }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3) && !isShopOpen && !isReloading && GameManager.instance.isSniperBought)
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !isReloading && GameManager.instance.isSniperBought)
         {
             ChangeWeapon(2);
         }
@@ -89,7 +88,7 @@ public class Gun : MonoBehaviour
 
         Vector2 newPos = (Vector2)cameraTransform.position + startPos + (mousePos * movementSensitivity);
 
-        if(isShopOpen)
+        if (isShopOpen)
         {
             crosshairRend.sprite = Shop.instance.shopMouseIcon;
         }
@@ -118,7 +117,7 @@ public class Gun : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R) && !isShopOpen)
         {
-            if (isReloading == false && ammoInMag!=magSize && totalAmmo!=0)
+            if (isReloading == false && ammoInMag != magSize && totalAmmo != 0)
             {
                 canShoot = false;
                 StartCoroutine(Reload());
@@ -128,7 +127,7 @@ public class Gun : MonoBehaviour
         ammoText.text = "AMMO: " + ammoInMag.ToString() + "/" + totalAmmo.ToString();
         if (ammoInMag > 0)
         {
-            if (countdown <= 0 && isReloading==false)
+            if (countdown <= 0 && isReloading == false)
             {
                 canShoot = true;
                 //reloadText.text = "Ready to shoot!";
@@ -140,20 +139,19 @@ public class Gun : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonDown(1) && GameManager.instance.currentGunIndex == 2)
+        if (Input.GetMouseButtonDown(1) && GameManager.instance.currentGunIndex == 2 && !isZoomed)
         {
-            if (!isZoomed)
-            {
-                crosshairRend.sprite = SniperZoom;
-                isZoomed = true;
-                GameManager.instance.isZoomed = true;
-            }
-            else
-            {
-                isZoomed = false;
-                GameManager.instance.isZoomed = false;
-            }
+            crosshairRend.sprite = SniperZoom;
+            isZoomed = true;
+            GameManager.instance.isZoomed = true;
         }
+
+        if (Input.GetMouseButtonUp(1) && GameManager.instance.currentGunIndex == 2 && isZoomed)
+        {
+            isZoomed = false;
+            GameManager.instance.isZoomed = false;
+        }
+
 
         if (GameManager.instance.currentGunIndex == 2)
             zoomText.text = "Zoom:" + zoomCountdown.ToString("F1");
@@ -163,7 +161,7 @@ public class Gun : MonoBehaviour
         if (isZoomed)
         {
             zoomCountdown -= Time.deltaTime;
-            if(zoomCountdown <= 0)
+            if (zoomCountdown <= 0)
             {
                 isZoomed = false;
                 GameManager.instance.isZoomed = false;
@@ -172,7 +170,7 @@ public class Gun : MonoBehaviour
         else
         {
             if (zoomCountdown < zoomTimer)
-                zoomCountdown += Time.deltaTime/2;
+                zoomCountdown += Time.deltaTime / 2;
         }
     }
     void Shoot()
@@ -187,7 +185,7 @@ public class Gun : MonoBehaviour
             RaycastHit2D[] hit = Physics2D.RaycastAll(ray.origin, ray.direction, Mathf.Infinity);
             RaycastHit2D target = new();
 
-            for(int i = 0; i < hit.Length; i++)
+            for (int i = 0; i < hit.Length; i++)
             {
                 if (hit[i].transform.gameObject.layer == obstacleLayer)
                 {
@@ -216,7 +214,7 @@ public class Gun : MonoBehaviour
 
     void ShotgunShoot()
     {
-        if(canShoot)
+        if (canShoot)
         {
             _animController.ChangeAnimationState("shot");
             AudioManager.instance.Play(gunType.shotSound);
@@ -278,24 +276,24 @@ public class Gun : MonoBehaviour
 
     void CalculateStats()
     {
-        
+
         magSize = gunType.magSize;
         rateOfFire = gunType.rateOfFire;
         reloadTime = gunType.reloadTime;
         zoomTimer = gunType.zoomTimer;
         explosionRadius = gunType.explosionRadius;
-         
+
 
         foreach (UpgradeTemplate upgrade in equippedUpgrades)
         {
-            
+
             magSize += upgrade.magSize;
             rateOfFire += upgrade.rateOfFire;
             reloadTime += upgrade.reloadTime;
             zoomTimer += upgrade.zoomTimer;
             explosionRadius += upgrade.explosionRadius;
         }
-        
+
     }
 
     public void PopulateInfo(GunTemplate newGun)
@@ -330,6 +328,11 @@ public class Gun : MonoBehaviour
     }
     public void ChangeWeapon(int number)
     {
+        if (isShopOpen)
+        {
+            GameManager.instance.CloseShop();
+        }
+
         isZoomed = false;
         GameManager.instance.isZoomed = false;
         GameManager.instance.newGunIndex = number;

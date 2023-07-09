@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640c0ea775ae2d94fbd2bba28f3839d1, type: 3}
   m_Name: ExplosionRadiusUpgrade 2
   m_EditorClassIdentifier: 
-  name: Explosion
+  name: Explosion 2
   cost: 250
   magSize: 0
   rateOfFire: 0

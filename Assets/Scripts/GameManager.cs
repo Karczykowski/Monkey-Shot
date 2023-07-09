@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public List<Gun> guns;
     public List<GameObject> gunsObjects;
     public GameObject shop;
+    public GameObject shopIcon;
+    public GameObject zoomIcon;
     private bool shopToggle = false;
     public bool isZoomed = false;
 
@@ -42,6 +44,11 @@ public class GameManager : MonoBehaviour
     }
     void Update()
     {
+        if (currentGunIndex == 2)
+            zoomIcon.SetActive(true);
+        else
+            zoomIcon.SetActive(false);
+
         if(currentGunIndex!=newGunIndex)
         {
             ChangeWeapon();
@@ -61,25 +68,11 @@ public class GameManager : MonoBehaviour
         {
             if(shopToggle)
             {
-                shop.SetActive(false);
-                shopToggle = false;
-                gunsObjects[currentGunIndex].GetComponent<Gun>().isShopOpen = false;
+                CloseShop();
             }
             else
             {
-                shop.SetActive(true);
-                shopToggle = true;
-                gunsObjects[currentGunIndex].GetComponent<Gun>().isShopOpen = true;
-                for (int i = 0; i < shop.transform.childCount; i++)
-                {
-                    Transform child = shop.transform.GetChild(i);
-                    if (i == currentGunIndex)
-                        child.gameObject.SetActive(true);
-                    else
-                    {
-                        child.gameObject.SetActive(false);
-                    }
-                }
+                OpenShop();
             }
         }
     }
@@ -107,6 +100,41 @@ public class GameManager : MonoBehaviour
         gunsObjects[currentGunIndex].SetActive(false);
         gunsObjects[newGunIndex].SetActive(true);
         currentGunIndex = newGunIndex;
+    }
+
+    public void BuyAmmo()
+    {
+        if (money >= 10)
+        {
+            gunsObjects[currentGunIndex].GetComponent<Gun>().totalAmmo += 20;
+            money -= 10;
+        }
+    }
+
+    public void CloseShop()
+    {
+        shopIcon.SetActive(true);
+        shop.SetActive(false);
+        shopToggle = false;
+        gunsObjects[currentGunIndex].GetComponent<Gun>().isShopOpen = false;
+    }
+
+    public void OpenShop()
+    {
+        shopIcon.SetActive(false);
+        shop.SetActive(true);
+        shopToggle = true;
+        gunsObjects[currentGunIndex].GetComponent<Gun>().isShopOpen = true;
+        for (int i = 0; i < shop.transform.childCount; i++)
+        {
+            Transform child = shop.transform.GetChild(i);
+            if (i == currentGunIndex)
+                child.gameObject.SetActive(true);
+            else
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
     }
 }
 

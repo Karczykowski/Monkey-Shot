@@ -55,13 +55,13 @@ public class Monkey : MonoBehaviour
         
         if(GameManager.instance.isZoomed && !isSlowed)
         {
-            speed /= 2;
+            speed /= 2.5f;
             isSlowed = true;
         }
 
         if(!GameManager.instance.isZoomed && isSlowed)
         {
-            speed *= 2;
+            speed *= 2.5f;
             isSlowed = false;
         }
     }

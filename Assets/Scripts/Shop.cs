@@ -10,8 +10,10 @@ public class Shop : MonoBehaviour
     public ShopButton buttonPrefab;
     public Sprite shopMouseIcon;
     public static Shop instance;
-    public Button ShotgunButton;
-    public Button SniperButton;
+    public Button shotgunButton;
+    public Button sniperButton;
+    public GameObject hotbarShotgun;
+    public GameObject hotbarSniper;
 
     private void Awake()
     {
@@ -29,13 +31,23 @@ public class Shop : MonoBehaviour
 
     public void BuyShotgun()
     {
-        GameManager.instance.isShotgunBought = true;
-        ShotgunButton.interactable = false;
+        if (GameManager.instance.money >= 200)
+        {
+            GameManager.instance.isShotgunBought = true;
+            shotgunButton.interactable = false;
+            GameManager.instance.money -= 200;
+            hotbarShotgun.SetActive(true);
+        }
     }
 
     public void BuySniper()
     {
-        GameManager.instance.isSniperBought = true;
-        SniperButton.interactable = false;
+        if (GameManager.instance.money >= 200)
+        {
+            GameManager.instance.isSniperBought = true;
+            sniperButton.interactable = false;
+            GameManager.instance.money -= 200;
+            hotbarSniper.SetActive(true);
+        }
     }
 }
