@@ -16,11 +16,11 @@ MonoBehaviour:
   rateOfFire: 1.5
   magSize: 10
   reloadTime: 3
-  shootEffect: {fileID: 278650250576229169, guid: fe81a32807b742a4c916d0d6fc0fb692, type: 3}
+  shootEffect: {fileID: 278650250576229169, guid: 987828462b1f0a743a798b2a4563d583, type: 3}
   explosionRadius: 0
   zoomTimer: 3
   crosshair: {fileID: 21300000, guid: b53012db6a9e045469b024d5ebc04f2d, type: 3}
   handSprite: {fileID: 21300000, guid: 63f5de57385cc4e43a8011e1afee9eaf, type: 3}
   animController: {fileID: 9100000, guid: d19032a2f70280f44b86141c6ebe9fe2, type: 2}
   shotSound: Sniper shot
-  reloadSound: 
+  reloadSound: Sniper Reload

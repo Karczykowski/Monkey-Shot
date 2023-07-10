@@ -241,6 +241,7 @@ public class Gun : MonoBehaviour
     }
     IEnumerator Reload()
     {
+        AudioManager.instance.Play(gunType.reloadSound);
         isReloading = true;
         reloadText.text = "RELOADING";
         canMove = false;
@@ -304,6 +305,7 @@ public class Gun : MonoBehaviour
         reloadTime = gunType.reloadTime;
         ammoInMag = gunType.magSize;
         countdown = gunType.rateOfFire;
+        shootEffect = gunType.shootEffect;
         explosionRadius = gunType.explosionRadius;
         zoomTimer = gunType.zoomTimer;
         crosshairRend.sprite = gunType.crosshair;

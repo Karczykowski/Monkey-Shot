@@ -1120,7 +1120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba979c5148b26843aede00be93c814a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 0
+  money: 9999
   moneyText: {fileID: 924151669}
   currentGunIndex: 0
   newGunIndex: 0
@@ -1236,6 +1236,24 @@ MonoBehaviour:
   - name: Sniper shot
     clip: {fileID: 8300000, guid: 5861f320e9b628f47964193b25d47135, type: 3}
     volume: 0.103
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Pistol Reload
+    clip: {fileID: 8300000, guid: 426f99867477a114a91908b80b7a1e73, type: 3}
+    volume: 0.054
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Sniper Reload
+    clip: {fileID: 8300000, guid: 296ca78ff1f8378489a2500be6014fc5, type: 3}
+    volume: 0.054
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Shotgun Reload
+    clip: {fileID: 8300000, guid: 6ce9fd8b6edfba847ae501a0565b1e30, type: 3}
+    volume: 0.054
     pitch: 1
     loop: 0
     source: {fileID: 0}
