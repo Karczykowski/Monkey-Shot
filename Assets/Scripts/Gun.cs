@@ -39,6 +39,7 @@ public class Gun : MonoBehaviour
     public float zoomTimer;
     private float zoomCountdown;
 
+    public Sprite MenuIcon;
 
 
     private List<UpgradeTemplate> equippedUpgrades;
@@ -59,6 +60,7 @@ public class Gun : MonoBehaviour
     }
     private void Start()
     {
+        Cursor.visible = false;
         startPos = transform.position;
         zoomCountdown = zoomTimer;
     }
@@ -87,22 +89,29 @@ public class Gun : MonoBehaviour
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
         Vector2 newPos = (Vector2)cameraTransform.position + startPos + (mousePos * movementSensitivity);
-
-        if (isShopOpen)
+        
+        if (PauseMenu.isPaused)
         {
-            crosshairRend.sprite = Shop.instance.shopMouseIcon;
+            crosshairRend.sprite = MenuIcon;
+        }
+        else if (isShopOpen)
+        {
+            crosshairRend.sprite = MenuIcon;
         }
         else if (!isZoomed)
         {
             crosshairRend.sprite = gunType.crosshair;
         }
 
-        if (canMove)
-            transform.position = newPos;
-        else
+        if (!PauseMenu.isPaused)
         {
-            //movement when reloading
-            transform.position = new Vector2(newPos.x, -17);
+            if (canMove)
+                transform.position = newPos;
+            else
+            {
+                //movement when reloading
+                transform.position = new Vector2(newPos.x, -17);
+            }
         }
 
         if (Input.GetMouseButtonDown(0) && !isShopOpen)
@@ -175,7 +184,7 @@ public class Gun : MonoBehaviour
     }
     void Shoot()
     {
-        if (canShoot)
+        if (canShoot && !PauseMenu.isPaused)
         {
             _animController.ChangeAnimationState("shot");
             AudioManager.instance.Play(gunType.shotSound);
@@ -214,7 +223,7 @@ public class Gun : MonoBehaviour
 
     void ShotgunShoot()
     {
-        if (canShoot)
+        if (canShoot && !PauseMenu.isPaused)
         {
             _animController.ChangeAnimationState("shot");
             AudioManager.instance.Play(gunType.shotSound);

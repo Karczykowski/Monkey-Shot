@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 640c0ea775ae2d94fbd2bba28f3839d1, type: 3}
   m_Name: AllUpgrade
   m_EditorClassIdentifier: 
-  name: ALL
+  name: Universal
   cost: 1500
   magSize: 5
   rateOfFire: -0.1
